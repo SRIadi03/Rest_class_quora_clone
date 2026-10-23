@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+    <h1>Quora Posts</h1>
+     <% for (let post of posts) { %>
+    <div class="post">
+        <h3 class="user">@<%= post.username %></h3>
+        <h4 class="content"><%= post.content %></h4>
+
+        <!-- Loop ke andar specific ID ka link: -->
+        <a href="/posts/<%= post.id %>">See Detail</a>
+        <a href="/posts/<%= post.id %>/edit">Edit Post</a>
+        <!-- 🔴 Delete Form with method-override -->
+        <form method="POST" action="/posts/<%= post.id %>?_method=DELETE">
+            <button style="background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px;">
+                Delete Post
+            </button>
+        </form>
+    </div>
+<% } %>
+
+<br>
+<!-- Full localhost URL likhne ki zaroorat nahi hoti, seedha relative path likhein: -->
+<a href="/posts/new">Create New Post</a>
+</body>
+</html>
